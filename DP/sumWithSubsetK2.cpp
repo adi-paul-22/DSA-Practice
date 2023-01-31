@@ -1,4 +1,4 @@
-//count subsets with sum notTaken
+//count subsets with sum k
 //tabulation method 2
 
 #include<bits/stdc++.h>
