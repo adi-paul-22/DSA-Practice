@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+string shortestSuperSequence(string s1 , string s2){
+    
+    int n  = s1.size();
+    int m  = s2.size();
+    
+    vector<vector<int>> dp(n+1,vector<int> (m+1,0));
+    
+    for(int ind1 =1;ind1<=n;ind1++){
+        for(int ind2 =0;ind2<=m;ind2++){
+            if(s1[ind1 - 1] == s2[ind2 - 1])
+                dp[ind1][ind2] = 1 + dp[ind1-1][ind2-1];
+            else 
+                dp[ind1][ind2] = 0 + max(dp[ind1-1][ind2],dp[ind1][ind2-1]);
+                
+      
+        }
+    }
+    
+    int len = dp[n][m];
+    int i = n;int j = m;
+    
+    int index = len-1;
+    
+    string ans = "";
+    
+    while(i>0 && j > 0){
+        if(s1[i-1] == s2[j-1]){
+            ans+= s1[i-1];
+            index--;    // for lcs
+            i--;        // for string 1
+            j--;        // for string 2
+        }
+        else if (dp[i-1][j] > dp[i][j-1]){
+            ans += s1[i-1];
+            i--;
+        }
+        else{
+            ans+= s2[j-1];
+            j--;
+        }
+    }
+    
+    // add remaining characters only one of the loops will run
+    
+    while(i>0){
+        ans+=s1[i-1];
+        i--;
+    }
+    
+    while(j>0){
+        ans+= s2[j-1];
+        j--;
+    }
+    
+    reverse(ans.begin(),ans.end());
+    
+    return ans;
+}
+int main() {
+
+  string s1 = "brute";
+  string s2 = "groot";
+
+  cout << "The Longest Common Supersequence is "<<shortestSuperSequence(s1,s2);
+}
