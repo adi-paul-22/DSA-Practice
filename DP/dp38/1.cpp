@@ -25,7 +25,7 @@ int getAns(vector<int>& arr , int n,int ind , int buy , int cap
     return dp[ind][buy][cap] = profit;
 }
 
-int maxProfit(vector<int>& prices,int n, int k){
+int maxProfit(vector <int>& prices,int n, int k){
     vector<vector<vector<int>>> dp(n,vector<vector<int>>(2,
     vector<int>(k+1,-1)));
     
