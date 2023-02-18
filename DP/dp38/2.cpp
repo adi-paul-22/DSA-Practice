@@ -4,7 +4,6 @@ using namespace std;;
 int maxProfit(vector<int>& prices,int n, int k){
     vector<vector<vector<int>>> dp(n+1,vector<vector<int>>(2,
     vector<int>(k+1,0)));
-    int profit;
     for(int ind = n-1;ind>=0;ind--){
         for(int buy = 0;buy<=1;buy++){
             for(int cap = 1;cap<=k;cap++){
